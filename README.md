@@ -2,7 +2,7 @@
 
 Welcome to **LMS Pro**, a next-generation Learning Management System designed with a **"Humanized Bento"** aesthetic. We combine powerful functionality with a beautiful, glassmorphic UI to make teaching and learning a joy. ✨
 
-![LMS Preview](https://via.placeholder.com/800x400?text=LMS+Pro+Preview)
+![LMS Preview]([https://via.placeholder.com/800x400?text=LMS+Pro+Preview](https://drive.google.com/file/d/1qvPDDLiiIyelbemzLILsv4_5IpctHzu8/view?usp=sharing))
 
 ## 🌟 Features
 
