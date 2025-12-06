@@ -1,0 +1,11 @@
+const express = require('express');
+const { enrollInCourse, getMyEnrollments, updateProgress, getCertificate, getEnrollmentStatus, getInstructorStats } = require('../controllers/enrollmentController');
+const { verifyToken, authorizeRoles } = require('../middleware/authMiddleware');
+const router = express.Router();
+router.get('/instructor-stats', verifyToken, authorizeRoles('instructor', 'admin'), getInstructorStats);
+router.post('/', verifyToken, enrollInCourse);
+router.get('/my-courses', verifyToken, getMyEnrollments);
+router.put('/progress', verifyToken, updateProgress);
+router.get('/certificate/:courseId', verifyToken, getCertificate);
+router.get('/status/:courseId', verifyToken, getEnrollmentStatus);
+module.exports = router;

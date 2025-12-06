@@ -1,0 +1,14 @@
+const express = require('express');
+const { createCourse, getCourses, getCourseById, addLesson, getInstructorCourses } = require('../controllers/courseController');
+const { verifyToken, authorizeRoles } = require('../middleware/authMiddleware');
+const upload = require('../middleware/uploadMiddleware');
+const router = express.Router();
+router.get('/', getCourses);
+router.get('/my-courses', verifyToken, authorizeRoles('instructor'), getInstructorCourses);
+router.get('/:id', getCourseById);
+router.post('/', verifyToken, authorizeRoles('instructor', 'admin'), upload.single('thumbnail'), createCourse);
+router.post('/lesson', verifyToken, authorizeRoles('instructor', 'admin'), upload.fields([{ name: 'video', maxCount: 1 }, { name: 'pdf', maxCount: 1 }]), addLesson);
+router.put('/lesson/:id', verifyToken, authorizeRoles('instructor', 'admin'), upload.fields([{ name: 'video', maxCount: 1 }, { name: 'pdf', maxCount: 1 }]), require('../controllers/courseController').updateLesson);
+router.delete('/lesson/:id', verifyToken, authorizeRoles('instructor', 'admin'), require('../controllers/courseController').deleteLesson);
+router.delete('/:id', verifyToken, authorizeRoles('admin', 'instructor'), require('../controllers/courseController').deleteCourse);
+module.exports = router;
